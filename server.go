@@ -13,8 +13,8 @@ import (
 	"runtime/debug"
 	"time"
 
-	"github.com/mdempsky/gocode/internal/gbimporter"
-	"github.com/mdempsky/gocode/internal/suggest"
+	"github.com/miroslavLalev/gocode/internal/gbimporter"
+	"github.com/miroslavLalev/gocode/internal/suggest"
 )
 
 func doServer() {

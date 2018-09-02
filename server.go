@@ -29,7 +29,8 @@ func doServer() {
 	}
 
 	sigs := make(chan os.Signal)
-	signal.Notify(sigs, os.Interrupt)
+	sarr := append(getProcessStopSignals(), os.Interrupt)
+	signal.Notify(sigs, sarr...)
 	go func() {
 		<-sigs
 		exitServer()

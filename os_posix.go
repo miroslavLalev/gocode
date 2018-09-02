@@ -6,9 +6,12 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"syscall"
 )
 
 const defaultSocketType = "unix"
+
+var unixStopSignals = []os.Signal{syscall.SIGTERM}
 
 // Full path of the current executable
 func get_executable_filename() string {
@@ -32,4 +35,9 @@ func get_executable_filename() string {
 		return path
 	}
 	return ""
+}
+
+// Additional OS-specific signals for process termination
+func getProcessStopSignals() []os.Signal {
+	return unixStopSignals
 }

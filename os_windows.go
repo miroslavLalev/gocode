@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"syscall"
 	"unsafe"
 )
 
 const defaultSocketType = "tcp"
+
+var windowsStopSignals = []os.Signal{}
 
 var (
 	kernel32 = syscall.NewLazyDLL("kernel32.dll")
@@ -23,4 +26,9 @@ func get_executable_filename() string {
 		panic(fmt.Sprintf("GetModuleFileNameW : err %d", int(err)))
 	}
 	return syscall.UTF16ToString(b)
+}
+
+// Additional OS-specific signals for process termination
+func getProcessStopSignals() []os.Signal {
+	return windowsStopSignals
 }
